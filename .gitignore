@@ -11,3 +11,5 @@ venv/
 *.wav
 *.pt
 *.pdf
+*.bin
+*.safetensors
