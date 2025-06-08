@@ -35,9 +35,11 @@ This repository implements an Automatic Speech Recognition (ASR) microservice us
    https://github.com/featherineaugustus/Automatic-Speech-Recognition-Fine-Tuning
    cd Automatic-Speech-Recognition-Fine-Tuning
 
+
 2. **Install Dependencies**:
    ```bash
    pip install -r requirements.txt
+
 
 3. **Run ASR Service (Task 2)**:
    ```bash
@@ -51,6 +53,7 @@ Response JSON contains:
 - "transcription": the model output text
 - "duration": file duration in seconds
 
+
 4. **Transcribe Common Voice Dataset**:
    ```bash
    cd asr
@@ -60,6 +63,7 @@ Reads cv-valid-dev/*.mp3, calls the /asr API.
 - Appends a generated_text column to cv-valid-dev.csv.
 - Saves the augmented CSV file in the same folder.
 
+
 5. **Containerize ASR Service**:
    ```bash
    cd asr
@@ -67,6 +71,7 @@ Reads cv-valid-dev/*.mp3, calls the /asr API.
    docker run -p 8001:8001 asr-api
 
 The ASR service runs within a Docker container, deleting processed files to maintain cleanliness.
+
 
 6. **Fine-Tune ASR Model (Task 3)**:
    ```bash
@@ -78,9 +83,11 @@ The ASR service runs within a Docker container, deleting processed files to main
 - Visualizes training and validation metrics and reports interpretations.
 - Outputs the fine-tuned model: wav2vec2-large-960h-cv. Also includes transcription on test set and performance metrics.
 
+
 7. **Compare Models (Task 4)**:
 See training-report.pdf:
 - Comparison against original wav2vec2 output on dev set.
+
 
 8. **Compare Models (Task 4)**:
    ```bash
