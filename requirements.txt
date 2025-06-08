@@ -1,0 +1,9 @@
+transformers
+torch
+datasets
+soundfile
+flask
+pydub
+librosa
+pandas
+sentence-transformers

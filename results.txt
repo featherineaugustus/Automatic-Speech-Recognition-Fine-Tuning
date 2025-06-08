@@ -1,0 +1,7 @@
+Pretrained model: facebook/wav2vec2-base-960h
+cv-valid-dev.csv
+Test WER: 1.01608
+
+Pretrained model: facebook/wav2vec2-base-960h-cv (fine-tuned)
+cv-valid-dev.csv
+Test WER: 0.14385

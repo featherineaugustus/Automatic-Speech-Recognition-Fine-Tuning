@@ -1,0 +1,14 @@
+# Exclude directory
+tests/
+common_voice/
+asr-train
+
+# Exclude all Markdown files
+*.md
+
+# Exclude all log files
+*.log
+*.mp3
+
+# Exclude the '.git' directory
+.git/

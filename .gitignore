@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+venv/
+*.env
+*.log
+*.zip
+*.mp3
+*.wav
+*.pt
+*.pdf
