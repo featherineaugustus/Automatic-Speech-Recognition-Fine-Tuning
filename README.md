@@ -5,25 +5,25 @@
 This repository implements an Automatic Speech Recognition (ASR) microservice using Facebook's `wav2vec2-large-960h` model. It includes functionalities for transcribing audio files, fine-tuning the model on the Common Voice dataset, and detecting specific hotwords.
 
 
-/
-├── asr/                         # Task 2: Hosted ASR microservice + inference client
-│   ├── asr_api.py              # ASR inference service using wav2vec2-large-960h
-│   ├── cv-decode.py           # Script to transcribe Common Voice samples via the service
-│   ├── Dockerfile             # Containerization of the ASR service
-│   └── ...                     # e.g. requirements.txt if separate
-├── asr-train/                  # Task 3: Fine‑tune wav2vec2-large-960h
-│   ├── cv-train-2a.ipynb       # Jupyter notebook: preprocessing, training, evaluation
-│   └── output/                 # Model artifacts (wav2vec2-large-960h-cv)
-├── hotword-detection/          # Task 5: Hot‑word detection & semantic similarity
-│   ├── cv-hotword-5a.ipynb     # Hot‑word detection notebook
-│   ├── detected.txt            # Filenames containing hot words
-│   └── cv-hotword-similarity-5b.ipynb  # Notebook for semantic similarity detection
-├── training-report.pdf         # Task 4: Comparison & improvement proposals
-├── essay-ssl.pdf               # Task 6: 500-word self-supervised learning essay
-├── Dockerfile             # Containerization of the ASR service
-├── requirements.txt            # Python dependencies
-├── .gitignore                  # Files to be ignored (e.g. model artifacts, __pycache__, LFS pointers)
-└── README.md                   # This instructions file
+   ```bash
+   ├── asr/                         # Task 2: Hosted ASR microservice + inference client
+   │   ├── asr_api.py              # ASR inference service using wav2vec2-large-960h
+   │   ├── cv-decode.py           # Script to transcribe Common Voice samples via the service
+   │   ├── Dockerfile             # Containerization of the ASR service
+   │   └── ...                     # e.g. requirements.txt if separate
+   ├── asr-train/                  # Task 3: Fine‑tune wav2vec2-large-960h
+   │   ├── cv-train-2a.ipynb       # Jupyter notebook: preprocessing, training, evaluation
+   │   └── output/                 # Model artifacts (wav2vec2-large-960h-cv)
+   ├── hotword-detection/          # Task 5: Hot‑word detection & semantic similarity
+   │   ├── cv-hotword-5a.ipynb     # Hot‑word detection notebook
+   │   ├── detected.txt            # Filenames containing hot words
+   │   └── cv-hotword-similarity-5b.ipynb  # Notebook for semantic similarity detection
+   ├── training-report.pdf         # Task 4: Comparison & improvement proposals
+   ├── essay-ssl.pdf               # Task 6: 500-word self-supervised learning essay
+   ├── Dockerfile             # Containerization of the ASR service
+   ├── requirements.txt            # Python dependencies
+   ├── .gitignore                  # Files to be ignored (e.g. model artifacts, __pycache__, LFS pointers)
+   └── README.md                   # This instructions file
 
 
 ## Setup Instructions
@@ -90,6 +90,6 @@ See training-report.pdf:
 
    ```bash
    hotword-detection/cv-hotword-similarity-5b.ipynb
-   
+
 - Uses hkunlp/instructor-large for embedding-based similarity.
 - Appends Boolean similarity column to cv-valid-dev.csv.
