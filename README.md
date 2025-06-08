@@ -24,6 +24,7 @@ This repository implements an Automatic Speech Recognition (ASR) microservice us
    ├── requirements.txt            # Python dependencies
    ├── .gitignore                  # Files to be ignored (e.g. model artifacts, __pycache__, LFS pointers)
    └── README.md                   # This instructions file
+   ```
 
 
 ## Setup Instructions
