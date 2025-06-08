@@ -10,6 +10,9 @@ venv/
 *.mp3
 *.wav
 *.pt
-*.pdf
+# *.pdf
 *.bin
 *.safetensors
+*.HTX xData Technical Test Questions (DS).pdf
+*.docx
+*.doc
