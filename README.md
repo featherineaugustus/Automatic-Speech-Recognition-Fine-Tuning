@@ -1,103 +1,162 @@
-# ASR Microservice with wav2vec2-large-960h
+# ASR Microservice with `wav2vec2-large-960h`
 
-## Overview
+## 📖 Overview
 
-This repository implements an Automatic Speech Recognition (ASR) microservice using Facebook's `wav2vec2-large-960h` model. It includes functionalities for transcribing audio files, fine-tuning the model on the Common Voice dataset, and detecting specific hotwords.
+This repository implements an Automatic Speech Recognition (ASR) microservice using Facebook's [`wav2vec2-large-960h`](https://huggingface.co/facebook/wav2vec2-large-960h) model. It includes functionalities for:
 
+- Hosting an ASR inference API
+- Fine-tuning on the Common Voice dataset
+- Detecting hotwords and semantically similar phrases
 
-   ```bash
-   ├── asr/                         # Task 2: Hosted ASR microservice + inference client
-   │   ├── asr_api.py              # ASR inference service using wav2vec2-large-960h
-   │   ├── cv-decode.py           # Script to transcribe Common Voice samples via the service
-   │   ├── Dockerfile             # Containerization of the ASR service
-   │   └── ...                     # e.g. requirements.txt if separate
-   ├── asr-train/                  # Task 3: Fine‑tune wav2vec2-large-960h
-   │   ├── cv-train-2a.ipynb       # Jupyter notebook: preprocessing, training, evaluation
-   │   └── output/                 # Model artifacts (wav2vec2-large-960h-cv)
-   ├── hotword-detection/          # Task 5: Hot‑word detection & semantic similarity
-   │   ├── cv-hotword-5a.ipynb     # Hot‑word detection notebook
-   │   ├── detected.txt            # Filenames containing hot words
-   │   └── cv-hotword-similarity-5b.ipynb  # Notebook for semantic similarity detection
-   ├── training-report.pdf         # Task 4: Comparison & improvement proposals
-   ├── essay-ssl.pdf               # Task 6: 500-word self-supervised learning essay
-   ├── Dockerfile             # Containerization of the ASR service
-   ├── requirements.txt            # Python dependencies
-   ├── .gitignore                  # Files to be ignored (e.g. model artifacts, __pycache__, LFS pointers)
-   └── README.md                   # This instructions file
-   ```
+## 📁 Repository Structure
 
+```
+├── asr/                         # Task 2: Hosted ASR microservice + inference client
+│   ├── asr_api.py               # ASR inference service
+│   ├── cv-decode.py             # Transcribes Common Voice samples via the API
+│   ├── Dockerfile               # Containerization of the ASR service
+├── asr-train/                   # Task 3: Fine-tune wav2vec2-large-960h
+│   ├── cv-train-2a.ipynb        # Preprocessing, training, evaluation
+│   └── output/                  # Fine-tuned model artifacts
+├── hotword-detection/           # Task 5: Hotword detection & semantic similarity
+│   ├── cv-hotword-5a.ipynb      # Hotword matching notebook
+│   ├── detected.txt             # Matched filenames
+│   └── cv-hotword-similarity-5b.ipynb  # Embedding-based similarity detection
+├── training-report.pdf          # Task 4: Model comparison and improvement proposals
+├── essay-ssl.pdf                # Task 6: Essay on self-supervised learning
+├── requirements.txt             # Python dependencies
+├── .gitignore                   # Ignored files (e.g. models, __pycache__)
+└── README.md                    # This file
+```
 
-## Setup Instructions
+## ⚙️ Setup Instructions
 
-1. **Clone the repository**:
+### 1. Clone the Repository
 
-   ```bash
-   https://github.com/featherineaugustus/Automatic-Speech-Recognition-Fine-Tuning
-   cd Automatic-Speech-Recognition-Fine-Tuning
+```bash
+git clone https://github.com/featherineaugustus/Automatic-Speech-Recognition-Fine-Tuning.git
+cd Automatic-Speech-Recognition-Fine-Tuning
+```
 
+### 2. Install Dependencies
 
-2. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
+### 3. Run ASR Service (Task 2)
 
-3. **Run ASR Service (Task 2)**:
-   ```bash
-   cd asr
-   python asr_api.py
+```bash
+cd asr
+python asr_api.py
+```
 
-   curl http://localhost:8001/ping # should return "pong".
-   curl -F "file=@path/to/file.mp3" http://localhost:8001/asr
+Test the API:
 
-Response JSON contains:
-- "transcription": the model output text
-- "duration": file duration in seconds
+```bash
+curl http://localhost:8001/ping
+# Should return "pong"
 
+curl -F "file=@path/to/file.mp3" http://localhost:8001/asr
+```
 
-4. **Transcribe Common Voice Dataset**:
-   ```bash
-   cd asr
-   python cv-decode.py
+Example response:
 
-Reads cv-valid-dev/*.mp3, calls the /asr API.
-- Appends a generated_text column to cv-valid-dev.csv.
-- Saves the augmented CSV file in the same folder.
+```json
+{
+  "transcription": "hello world",
+  "duration": 3.21
+}
+```
 
+## 📊 Dataset Transcription
 
-5. **Containerize ASR Service**:
-   ```bash
-   cd asr
-   docker build -t asr-api .
-   docker run -p 8001:8001 asr-api
+### 4. Transcribe Common Voice Samples
 
-The ASR service runs within a Docker container, deleting processed files to maintain cleanliness.
+```bash
+cd asr
+python cv-decode.py
+```
 
+- Reads `cv-valid-dev/*.mp3`
+- Calls `/asr` API
+- Appends `generated_text` column to `cv-valid-dev.csv`
 
-6. **Fine-Tune ASR Model (Task 3)**:
-   ```bash
-   asr-train/cv-train-2a.ipynb
+## 🐳 Docker Usage
 
-- Implements 70/30 train-validation split on cv-valid-train.csv + audio.
-- Uses wav2vec2-large-960h as a base, fine-tunes with PyTorch or TensorFlow.
-- Documents preprocessing, tokenizer, feature extraction, hyperparameters.
-- Visualizes training and validation metrics and reports interpretations.
-- Outputs the fine-tuned model: wav2vec2-large-960h-cv. Also includes transcription on test set and performance metrics.
+### 5. Containerize ASR Service
 
+```bash
+cd asr
+docker build -t asr-api .
+docker run -p 8001:8001 asr-api
+```
 
-7. **Compare Models (Task 4)**:
-See training-report.pdf:
-- Comparison against original wav2vec2 output on dev set.
+- The service will run inside a container
+- Processed files are deleted to maintain cleanliness
 
+## 🧠 Fine-Tuning the Model
 
-8. **Compare Models (Task 4)**:
-   ```bash
-   hotword-detection/cv-hotword-5a.ipynb
+### 6. Fine-Tune (Task 3)
 
-- Searches for occurrences of words: “be careful”, “destroy”, “stranger”
-- Outputs matched filenames in detected.txt.
+Open and run:
 
-   ```bash
-   hotword-detection/cv-hotword-similarity-5b.ipynb
+```bash
+asr-train/cv-train-2a.ipynb
+```
 
-- Uses hkunlp/instructor-large for embedding-based similarity.
-- Appends Boolean similarity column to cv-valid-dev.csv.
+- 70/30 train-validation split
+- Uses `wav2vec2-large-960h` as base
+- Trained using PyTorch or TensorFlow
+- Outputs model to `asr-train/output/`
+- Logs training/validation metrics and includes test transcriptions
+
+## 📈 Evaluate & Compare Models
+
+### 7. Model Comparison (Task 4)
+
+Open `training-report.pdf`:
+
+- Compares base model vs. fine-tuned performance
+- Offers improvement strategies
+
+## 🔍 Hotword Detection
+
+### 8. Detect Target Phrases (Task 5A)
+
+Open:
+
+```bash
+hotword-detection/cv-hotword-5a.ipynb
+```
+
+- Searches for:
+  - “be careful”
+  - “destroy”
+  - “stranger”
+- Results saved in `detected.txt`
+
+### 9. Semantic Similarity (Task 5B)
+
+Open:
+
+```bash
+hotword-detection/cv-hotword-similarity-5b.ipynb
+```
+
+- Uses `hkunlp/instructor-large` for embedding-based similarity
+- Adds `similarity` boolean column to `cv-valid-dev.csv`
+
+## 📝 Extras
+
+- `essay-ssl.pdf`: 500-word essay on self-supervised learning (Task 6)
+
+## ✅ Status
+
+- [x] ASR service
+- [x] Common Voice decoding
+- [x] Docker support
+- [x] Model fine-tuning
+- [x] Evaluation & report
+- [x] Hotword detection
+- [x] Semantic similarity detection
