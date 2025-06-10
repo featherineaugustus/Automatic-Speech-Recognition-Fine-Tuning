@@ -13,6 +13,9 @@ venv/
 # *.pdf
 *.bin
 *.safetensors
-*.HTX xData Technical Test Questions (DS).pdf
 *.docx
 *.doc
+*.pdf
+
+# Ignore a specific PDF file
+HTX xData Technical Test Questions (DS).pdf
