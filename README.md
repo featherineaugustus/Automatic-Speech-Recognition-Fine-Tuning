@@ -58,6 +58,15 @@ cd asr
 python asr_api.py
 ```
 
+or
+
+```bash
+cd asr
+set FLASK_APP=asr_api.py
+set FLASK_ENV=development
+flask run --host=0.0.0.0 --port=8001
+```
+
 Test the API:
 
 ```bash
@@ -65,6 +74,7 @@ curl http://localhost:8001/ping
 # Should return "pong"
 
 curl -F "file=@path/to/file.mp3" http://localhost:8001/asr
+curl -F "file=@asr/sample.mp3" http://localhost:8001/asr
 ```
 
 Example response:
@@ -94,9 +104,11 @@ python cv-decode.py
 ### 5. Containerize ASR Service
 
 ```bash
-cd asr
 docker build -t asr-api .
 docker run -p 8001:8001 asr-api
+
+curl http://localhost:8001/ping
+curl -F "file=@asr/sample.mp3" http://localhost:8001/asr
 ```
 
 - The service will run inside a container
