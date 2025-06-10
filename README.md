@@ -71,8 +71,7 @@ flask run --host=0.0.0.0 --port=8001
 Test the API:
 
 ```bash
-curl http://localhost:8001/ping
-# Should return "pong"
+curl http://localhost:8001/ping # Should return "pong"
 
 curl -F "file=@path/to/file.mp3" http://localhost:8001/asr
 curl -F "file=@asr/sample.mp3" http://localhost:8001/asr
