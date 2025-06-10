@@ -19,7 +19,7 @@ This repository implements an Automatic Speech Recognition (ASR) microservice us
 │   ├── cv-train-2a.ipynb               # Preprocessing, training, evaluation
 │   └── output/                         # Fine-tuned model artifacts
 │
-├── asr-train/                          # Dataset [Download](https://www.kaggle.com/datasets/mozillaorg/common-voice)
+├── common_voice/                       # Common voice dataset
 │
 ├── hotword-detection/                  # Task 5: Hotword detection & semantic similarity
 │   ├── cv-hotword-5a.ipynb             # Hotword matching notebook
@@ -38,6 +38,9 @@ This repository implements an Automatic Speech Recognition (ASR) microservice us
 │
 └── README.md                           # Readme file
 ```
+
+Download common voice datset at [Download](https://www.kaggle.com/datasets/mozillaorg/common-voice)
+
 
 ## ⚙️ Setup Instructions
 
