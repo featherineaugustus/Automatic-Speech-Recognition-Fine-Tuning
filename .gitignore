@@ -3,14 +3,12 @@ __pycache__/
 *.pyo
 *.pyd
 .env
-venv/
 *.env
 *.log
 *.zip
 *.mp3
 *.wav
 *.pt
-# *.pdf
 *.bin
 *.safetensors
 *.docx

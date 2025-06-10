@@ -1,4 +1,4 @@
-transformers
+transformers[torch]
 torch
 datasets
 soundfile
@@ -7,3 +7,9 @@ pydub
 librosa
 pandas
 sentence-transformers
+requests
+tqdm
+torchaudio
+soundfile
+jiwer
+InstructorEmbedding
