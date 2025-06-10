@@ -11,22 +11,29 @@ This repository implements an Automatic Speech Recognition (ASR) microservice us
 ## 📁 Repository Structure
 
 ```
-├── asr/                         # Task 2: Hosted ASR microservice + inference client
-│   ├── asr_api.py               # ASR inference service
-│   ├── cv-decode.py             # Transcribes Common Voice samples via the API
-│   ├── Dockerfile               # Containerization of the ASR service
-├── asr-train/                   # Task 3: Fine-tune wav2vec2-large-960h
-│   ├── cv-train-2a.ipynb        # Preprocessing, training, evaluation
-│   └── output/                  # Fine-tuned model artifacts
-├── hotword-detection/           # Task 5: Hotword detection & semantic similarity
-│   ├── cv-hotword-5a.ipynb      # Hotword matching notebook
-│   ├── detected.txt             # Matched filenames
-│   └── cv-hotword-similarity-5b.ipynb  # Embedding-based similarity detection
-├── training-report.pdf          # Task 4: Model comparison and improvement proposals
-├── essay-ssl.pdf                # Task 6: Essay on self-supervised learning
-├── requirements.txt             # Python dependencies
-├── .gitignore                   # Ignored files (e.g. models, __pycache__)
-└── README.md                    # This file
+├── asr/                                # Task 2: Hosted ASR microservice + inference client
+│   ├── asr_api.py                      # ASR inference service
+│   └── cv-decode.py                    # Transcribes Common Voice samples via the API
+│
+├── asr-train/                          # Task 3: Fine-tune wav2vec2-large-960h
+│   ├── cv-train-2a.ipynb               # Preprocessing, training, evaluation
+│   └── output/                         # Fine-tuned model artifacts
+│
+├── hotword-detection/                  # Task 5: Hotword detection & semantic similarity
+│   ├── cv-hotword-5a.ipynb             # Hotword matching notebook
+│   ├── cv-hotword-similarity-5b.ipynb  # Embedding-based similarity detection
+│   └── detected.txt                    # Matched filenames
+│
+├── training-report.pdf                 # Task 4: Model comparison and improvement proposals
+├── essay-ssl.pdf                       # Task 6: Essay on self-supervised learning
+│
+├── requirements.txt                    # Python dependencies
+│
+├── Dockerfile                          # Containerization of the ASR service
+│
+├── .gitignore                          # Ignored files
+│
+└── README.md                           # Readme file
 ```
 
 ## ⚙️ Setup Instructions
