@@ -24,8 +24,9 @@ This repository implements an Automatic Speech Recognition (ASR) microservice us
 │   ├── cv-hotword-similarity-5b.ipynb  # Embedding-based similarity detection
 │   └── detected.txt                    # Matched filenames
 │
-├── training-report.pdf                 # Task 4: Model comparison and improvement proposals
-├── essay-ssl.pdf                       # Task 6: Essay on self-supervised learning
+├── report/                             # Reports
+│   ├── training-report.pdf             # Task 4: Model comparison and improvement proposals
+│   └── essay-ssl.pdf                   # Task 6: Essay on self-supervised learning
 │
 ├── requirements.txt                    # Python dependencies
 │
